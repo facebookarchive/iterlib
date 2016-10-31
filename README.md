@@ -17,8 +17,10 @@ this module.
 
 Some comparison points below:
 
-folly::dynamic d1 = true; 	// 56 bytes
-dynamic d2 = true;		// 32 bytes
+```
+folly::dynamic d1 = true;       // 56 bytes
+dynamic d2 = true;              // 32 bytes
+```
 
 This optimization matters for the common use case of PODs.
 
@@ -29,8 +31,10 @@ that total dynamic memory allocation is smaller with this dynamic.
 For a vector of maps where each map had two string keys and the value
 was an int or string, we measured:
 
+```
 folly::dynamic Maximum resident set size (kbytes): 105748
 This dynamic   Maximum resident set size (kbytes):  70272
+```
 
 The dynamic also allows lazy parsing optimizations where you may read
 a table with many columns from a key value store, but the query only
