@@ -21,6 +21,8 @@ find_package(Threads)
 find_package(Gtest)
 find_package(Folly)
 
+include_directories(${FOLLY_INCLUDE_DIR})
+
 set(Boost_NO_SYSTEM_PATHS 1)
 set(BOOST_ROOT "/usr/local/boost/1.55.0")
 find_package(Boost 1.51 COMPONENTS
@@ -64,7 +66,7 @@ foreach(sourcefile ${BINS})
     add_executable(${exename}${ARTIFACT_SUFFIX} ${sourcefile})
     list(APPEND EXES ${exename}${ARTIFACT_SUFFIX})
     target_link_libraries(${exename}${ARTIFACT_SUFFIX} dynamic-shared
-                          folly gtest glog rt double-conversion
+                          ${FOLLY_LIBRARIES} glog rt double-conversion
                           ${Boost_LIBRARIES}
                           ${CMAKE_THREAD_LIBS_INIT})
     set_property(TARGET ${exename}${ARTIFACT_SUFFIX} PROPERTY CXX_STANDARD 11)

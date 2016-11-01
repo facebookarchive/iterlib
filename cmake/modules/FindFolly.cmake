@@ -19,12 +19,12 @@
 #  FOLLY_INCLUDE_DIR       The location of folly headers
 
 find_path(FOLLY_ROOT_DIR
-    NAMES include/folly/folly.h
+    NAMES include/folly/folly-config.h
 )
 
 find_library(FOLLY_LIBRARIES
     NAMES folly
-    HINTS ${FOLLY_ROOT_DIR}
+    HINTS ${FOLLY_ROOT_DIR}/lib
 )
 
 find_path(FOLLY_INCLUDE_DIR
