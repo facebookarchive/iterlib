@@ -506,17 +506,12 @@ TEST(Dynamic, FollyDynamicConversion) {
   EXPECT_EQ(dyn.type(), dyn.DOUBLE);
   EXPECT_EQ(dyn.asDouble(), 10);
 
-#if 0
-  // TODO: investigate why this fails
-  vector_dynamic_t strVector =
-  {static_cast<std::string>("hello"),static_cast<std::string>("world")};
-
+  vector_dynamic_t strVector{"hello", "world"};
   v = strVector;
   dyn = toFollyDynamic(v);
   EXPECT_TRUE(dyn.isArray());
   EXPECT_TRUE(dyn.at(0) == "hello");
   EXPECT_TRUE(dyn.at(1) == "world");
-#endif
 
   const unordered_map_t m =
   {{ "b", 20L}, { "a", 10L}, {"c", static_cast<std::string>("hello")}};
