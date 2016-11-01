@@ -385,7 +385,11 @@ private:
    return static_cast<dynamic&>(vec.at(idx));
  }
 };
-static_assert(sizeof(dynamic) == 32, "unexpected size");
+// Ensure the size is cache line efficient.
+// The biggest variable currently is std::string
+// which varies between 8, 24 and 32 bytes depending on implementation.
+// TODO: Investigate std::vector<char> as an alternative.
+static_assert(sizeof(dynamic) <= 40, "too large");
 
 // Add other kinds of makeMap's as needed.
 inline dynamic makeOrderedMap(const dynamic& key, dynamic&& value) {

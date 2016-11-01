@@ -122,7 +122,7 @@ struct JsonPrinter : public boost::static_visitor<> {
 
 protected:
   virtual void printString(const folly::StringPiece v) const {
-    folly::fbstring escaped;
+    std::string escaped;
     folly::json::escapeString(
         v,
         escaped,

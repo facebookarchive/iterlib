@@ -34,7 +34,7 @@ struct FollyDynamicConverter : boost::static_visitor<folly::dynamic> {
   }
 
   folly::dynamic operator() (const vector_dynamic_t& vec) const {
-    folly::dynamic dyn = {};
+    folly::dynamic dyn = folly::dynamic::array;
     for (const auto& val : vec) {
       dyn.push_back(boost::apply_visitor(*this, val));
     }
@@ -43,7 +43,7 @@ struct FollyDynamicConverter : boost::static_visitor<folly::dynamic> {
 
   template <typename T>
   folly::dynamic operator() (const std::vector<T>& vec) const {
-    folly::dynamic dyn = {};
+    folly::dynamic dyn = folly::dynamic::array;
     for (const auto& val : vec) {
       dyn.push_back(folly::dynamic(val));
     }
@@ -118,7 +118,7 @@ inline dynamic::dynamic(const folly::dynamic f) {
       unordered_map_t obj;
       for (auto& i : f.items()) {
         const dynamic& d = dynamic(i.second);
-        obj.insert({i.first.asString().toStdString(), d});
+        obj.insert({i.first.asString(), d});
       }
       *this = obj;
     }
