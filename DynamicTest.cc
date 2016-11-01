@@ -597,7 +597,7 @@ TEST(Dynamic, OrderedMapCommonComplex) {
 
 TEST(Dynamic, SizeAssert) {
   dynamic v1 = 10L;
-  static_assert(sizeof(v1) == 32, "unexpected size");
+  static_assert(sizeof(v1) <= 40, "unexpected size");
 }
 
 TEST(Dynamic, CopyConstructor) {

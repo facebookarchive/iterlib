@@ -28,6 +28,8 @@ set(BOOST_ROOT "/usr/local/boost/1.55.0")
 find_package(Boost 1.51 COMPONENTS
              context thread program_options regex system chrono
              REQUIRED)
+# Required for ubuntu 16.04/boost-1.58
+add_definitions("-DBOOST_VARIANT_USE_RELAXED_GET_BY_DEFAULT")
 
 # Main library source code
 set(SOURCES
@@ -47,8 +49,8 @@ set_target_properties(dynamic-shared PROPERTIES
                       LINKER_LANGUAGE CXX
                       OUTPUT_NAME "dynamic")
 
-set_property(TARGET dynamic-static PROPERTY CXX_STANDARD 11)
-set_property(TARGET dynamic-shared PROPERTY CXX_STANDARD 11)
+set_property(TARGET dynamic-static PROPERTY CXX_STANDARD 14)
+set_property(TARGET dynamic-shared PROPERTY CXX_STANDARD 14)
 
 set(TESTS
         DynamicTest.cc
@@ -66,10 +68,11 @@ foreach(sourcefile ${BINS})
     add_executable(${exename}${ARTIFACT_SUFFIX} ${sourcefile})
     list(APPEND EXES ${exename}${ARTIFACT_SUFFIX})
     target_link_libraries(${exename}${ARTIFACT_SUFFIX} dynamic-shared
-                          ${FOLLY_LIBRARIES} glog rt double-conversion
+                          gtest glog rt double-conversion
+                          ${FOLLY_LIBRARIES}
                           ${Boost_LIBRARIES}
                           ${CMAKE_THREAD_LIBS_INIT})
-    set_property(TARGET ${exename}${ARTIFACT_SUFFIX} PROPERTY CXX_STANDARD 11)
+    set_property(TARGET ${exename}${ARTIFACT_SUFFIX} PROPERTY CXX_STANDARD 14)
 endforeach(sourcefile ${APPS})
 
 install(TARGETS dynamic-static COMPONENT devel ARCHIVE DESTINATION lib)
