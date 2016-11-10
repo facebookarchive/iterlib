@@ -8,8 +8,9 @@
 #include <folly/Benchmark.h>
 #include <folly/io/async/EventBaseManager.h>
 
-#include "iterlib/variant/dynamic.h"
+#include "iterlib/dynamic.h"
 
+using namespace iterlib;
 using namespace iterlib::variant;
 
 TEST(Dynamic, DefaultValues) {
