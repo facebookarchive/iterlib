@@ -52,6 +52,8 @@ conversion to native types) are used here.
 TODO:
 ====
 
+* Implement zero-copy iterators on top of the dynamic
+
 * Faster conversion to json. Right now, requires conversion to folly::dynamic
   and then to json
 
