@@ -38,18 +38,17 @@ TEST(Dynamic, Initialization) {
 }
 
 TEST(Dynamic, ContainerInit) {
-  dynamic d1 = std::vector<int64_t>({ 1L, 2L, 3L });
+  dynamic d1{std::vector<int64_t>{ 1L, 2L, 3L }};
   EXPECT_TRUE(d1.is_of<std::vector<int64_t>>());
   auto& v1 = d1.getRef<std::vector<int64_t>>();
   EXPECT_EQ(3, v1.size());
 
-  dynamic d2 = std::vector<folly::StringPiece>(
-    {"foo", "bar", "baz" });
+  dynamic d2{std::vector<folly::StringPiece>{"foo", "bar", "baz" }};
   EXPECT_TRUE(d2.is_of<std::vector<folly::StringPiece>>());
   auto& v2 = d2.getRef<std::vector<folly::StringPiece>>();
   EXPECT_EQ(3, v2.size());
 
-  dynamic d3 = std::vector<dynamic>({ 1L, "foo", 3L });
+  dynamic d3{std::vector<dynamic>{ 1L, "foo", 3L }};
   EXPECT_TRUE(d3.is_of<vector_dynamic_t>());
   auto& v3 = d3.getRef<vector_dynamic_t>();
   EXPECT_EQ(3, v3.size());
