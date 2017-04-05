@@ -46,6 +46,5 @@ class NestIterator : public WrappedIterator<T> {
 }
 
 using NestIterator = detail::NestIterator<Item>;
-extern template class detail::NestIterator<Item>;
 
 }

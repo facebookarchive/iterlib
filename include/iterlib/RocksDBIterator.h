@@ -67,6 +67,5 @@ class RocksDBIterator : public Iterator<T> {
 }
 
 using RocksDBIterator = detail::RocksDBIterator<Item>;
-extern template class detail::RocksDBIterator<Item>;
 
 }

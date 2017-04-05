@@ -290,8 +290,6 @@ struct IdLessComp : public std::less<Iterator<T> *> {
 using Iterator = detail::Iterator<Item>;
 using IteratorVector = detail::IteratorVector<Item>;
 using detail::AttributeNameVec;
-
-extern template class detail::Iterator<Item>;
 }
 
 #include "iterlib/Iterator-inl.h"

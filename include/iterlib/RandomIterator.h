@@ -39,7 +39,6 @@ private:
 }
 
 using RandomIterator = detail::RandomIterator<Item>;
-extern template class detail::RandomIterator<Item>;
 
 }
 

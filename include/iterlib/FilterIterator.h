@@ -101,7 +101,6 @@ class FilterIterator : public FilterIteratorBase<T> {
 }
 
 using FilterIterator = detail::FilterIterator<Item>;
-extern template class detail::FilterIterator<Item>;
 
 }
 

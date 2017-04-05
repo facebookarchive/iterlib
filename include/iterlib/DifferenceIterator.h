@@ -36,7 +36,6 @@ protected:
 }
 
 using DifferenceIterator = detail::DifferenceIterator<Item>;
-extern template class detail::DifferenceIterator<Item>;
 
 }
 #include "iterlib/DifferenceIterator-inl.h"
